@@ -1,0 +1,8 @@
+# Ollama LLMs (large language models)
+/models
+/models.txt
+
+.env
+
+/compose.override.yml
+/compose.override.yaml

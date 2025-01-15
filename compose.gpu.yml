@@ -1,0 +1,9 @@
+services:
+  ollama:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: ${OLLAMA_GPU_DRIVER:-${GPU_DRIVER:-nvidia}}
+              count: ${OLLAMA_GPU_DEVICES:-all}
+              capabilities: [gpu]

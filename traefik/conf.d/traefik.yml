@@ -1,0 +1,14 @@
+http:
+  routers:
+    traefik-api:
+      service: api@internal
+      entryPoints:
+        - web
+        - websecure
+      rule: Host(`{{ env "TRAEFIK_DOMAIN" }}`) && PathPrefix(`/api`)
+    traefik-dashboard:
+      service: dashboard@internal
+      entryPoints:
+        - web
+        - websecure
+      rule: Host(`{{ env "TRAEFIK_DOMAIN" }}`) && !PathPrefix(`/api`)

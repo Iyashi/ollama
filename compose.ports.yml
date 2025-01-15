@@ -1,0 +1,10 @@
+services:
+  ollama:
+    ports:
+      - "${OLLAMA_PORT:-11434}:11434"
+
+  webui:
+    environment:
+      WEBUI_URL: "http://localhost:${WEBUI_PORT:-11444}"
+    ports:
+      - "${WEBUI_PORT:-11444}:${WEBUI_PORT:-11444}"

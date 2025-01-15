@@ -1,0 +1,13 @@
+http:
+  routers:
+    ollama:
+      service: ollama@file
+      entryPoints:
+        - web
+        - websecure
+      rule: Host(`{{ env "OLLAMA_DOMAIN" }}`)
+  services:
+    ollama:
+      loadbalancer:
+        servers:
+          - url: "http://ollama:11434"

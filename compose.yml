@@ -1,0 +1,32 @@
+name: ollama
+
+networks:
+  default:
+
+volumes:
+  ollama:
+  webui:
+
+services:
+  ollama:
+    image: ollama/ollama
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      - default
+    volumes:
+      - "ollama:/root/.ollama"
+      - "${MODELS_DIR:-./models}:/root/.ollama/models"
+
+  webui:
+    image: ghcr.io/open-webui/open-webui:main
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      OLLAMA_BASE_URL: "http://ollama:11434"
+      PORT: ${WEBUI_PORT:-11444}
+      WEBUI_AUTH: false # disable login
+    networks:
+      - default
+    volumes:
+      - "webui:/app/backend/data"

@@ -1,0 +1,27 @@
+networks:
+  proxy:
+    driver: bridge
+
+services:
+  proxy:
+    image: traefik:3.2
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - proxy
+    volumes:
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik/conf.d:/etc/traefik/conf.d:ro
+
+  ollama:
+    networks:
+      - proxy
+
+  webui:
+    environment:
+      WEBUI_URL: "http://${WEBUI_DOMAIN:-ollama.local}"
+    networks:
+      - proxy

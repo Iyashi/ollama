@@ -1,0 +1,13 @@
+http:
+  routers:
+    webui:
+      service: webui@file
+      entryPoints:
+        - web
+        - websecure
+      rule: Host(`{{ env "WEBUI_DOMAIN" }}`)
+  services:
+    webui:
+      loadbalancer:
+        servers:
+          - url: "http://webui:11444"

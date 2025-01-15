@@ -13,8 +13,8 @@ I have covered this in my WSL setup guide: [install docker](https://github.com/I
 
 Next, clone this repository and set it up.
 ```bash
-git clone git@github.com:Iyashi/local-ai.git
-cd local-ai
+git clone git@github.com:Iyashi/ollama.git
+cd ollama
 cp example.env .env
 ```
 

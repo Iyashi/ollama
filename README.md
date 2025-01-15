@@ -31,7 +31,7 @@ You can browse through the [ollama models database](https://ollama.com/search) a
 
 Personally, for my development environment, I use
 - `nomic-embed-text` for embedding
-- `deepseek-coder-v2:16b` for chatting in VSCode
+- `deepseek-coder-v2:16b` for chatting in VSCode (**ATTENTION!** Requires ~12gb RAM/VRAM)
 - `qwen2.5-coder:7b` for code completion
 - `llama3.1:8b` for various other stuff (like document analysis)
 
@@ -50,6 +50,7 @@ Add your downloaded models and remember to set the correct `apiBase` url when us
 {
   "models": [
     {
+      // ATTENTION: Requires ~12gb RAM/VRAM
       "title": "DeepSeek Coder v2 [16B]",
       "provider": "ollama",
       "model": "deepseek-coder-v2:16b",
@@ -96,6 +97,8 @@ Add your downloaded models and remember to set the correct `apiBase` url when us
   ]
 }
 ```
+
+> **Notice**: You can also add other APIs like ChatGPT to Continue. Refer to their documentation.
 
 Now you should have auto code completion in VSCode and should be able to start a new chat session with `Ctrl+Shift+P` `> Continue: New Session`.
 

@@ -45,7 +45,7 @@ I use the VSCode extension `Continue.continue`. But there are many more extensio
 `Continue.continue` adds chat and code completion and other capabilities. It's a great extension to leverage AI for development without leaving your editor.
 
 Once installed, you should open the `Continue` settings by pressing `Ctrl+Shift+P` and then enter `Continue: Open Continue config`.  
-Add your downloaded models and remember to set the correct `apiBase` url and to replace port `11434` with your `OLLAMA_PORT`:
+Add your downloaded models and remember to set the correct `apiBase` url when using a proxy or to replace port `11434` with your `OLLAMA_PORT` when using direct port mappings:
 ```json
 {
   "models": [
@@ -100,21 +100,21 @@ Add your downloaded models and remember to set the correct `apiBase` url and to 
 Now you should have auto code completion in VSCode and should be able to start a new chat session with `Ctrl+Shift+P` `> Continue: New Session`.
 
 ## Serve behind a proxy with custom domains
-Next, you need to configure the domains in the `.env` file. (`*_DOMAIN`)
+First, you need to configure the domains in the `.env` file. (`*_DOMAIN`)
 
-To be able to resolve them, you need to add the domains to your `/etc/hosts` file (`C:\Windows\system32\drivers\etc\hosts` on Windows).  
+To be able to resolve them locally, you need to add the domains to your `/etc/hosts` file (`C:\Windows\system32\drivers\etc\hosts` on Windows).  
 For example:
 ```hosts
 127.0.0.1  ollama.local api.ollama.local traefik.ollama.local
 ```
 > - `ollama.local` (env `WEBUI_DOMAIN`) is for the OpenWebUI service.
 > - `api.ollama.local` (env `OLLAMA_DOMAIN`) is for the Ollama service.
-> - `traefik.ollama.local` (env `TRAEFIK_DOMAIN`) is for the Traefik Dashboard.
+> - `traefik.ollama.local` (env `TRAEFIK_DOMAIN`) is for the Traefik Dashboard service.
 
 Lastly, you need add `:compose.proxy.yml` at the end of `COMPOSE_FILE` line in the `.env` file.  
 For example:
 ```env
-COMPOSE_FILE=compose.yml:compose.ports.yml:compose.gpu.yml
+COMPOSE_FILE=compose.yml:compose.proxy.yml:compose.gpu.yml
 ```
 
 Restart the stack using `docker compose down && docker compose up -d` and you're done!

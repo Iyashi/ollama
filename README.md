@@ -1,4 +1,4 @@
-# Local AI
+# Local AI with Ollama and OpenWebUI
 This repository allows you to **run AI models locally** on your machines.
 
 Under the hood, [OpenWebUI](https://docs.openwebui.com/) is used to manage the AI models and [ollama](https://ollama.com/) is used to actually run them.

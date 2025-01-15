@@ -149,6 +149,8 @@ services:
 
 Lastly, add `:compose.override.yml` to `COMPOSE_FILE` env var in the `.env` file. It must be the last entry in the list!
 
+Restart the stack using `docker compose down && docker compose up -d` and you're done!
+
 ## Enable GPU support
 > **Notice**: I only own an NVIDIA GPU, so I can only provide instructions for that. For an AMD or Intel GPU, you should be able to follow the same steps, but with different drivers and tools.
 

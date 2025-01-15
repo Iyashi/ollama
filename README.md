@@ -5,6 +5,8 @@ Under the hood, [OpenWebUI](https://docs.openwebui.com/) is used to manage the A
 
 Optionally, we can serve them behind a **traefik** reverse-proxy and apply domains to each service and also enable GPU support.
 
+This also works on WSL!
+
 ## Getting started
 First, you need to install [`Docker CE`](https://docs.docker.com/engine/install) and [`docker-compose-plugin`](https://docs.docker.com/compose/install/linux/#install-using-the-repository).  
 I have covered this in my WSL setup guide: [install docker](https://github.com/Iyashi/WSL#install-docker)

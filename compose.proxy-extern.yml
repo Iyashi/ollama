@@ -1,0 +1,14 @@
+networks:
+  proxy-extern:
+    external: true
+
+services:
+  proxy:
+    networks:
+      - proxy-extern
+    ports: !reset []
+    # Tell the system-wide traefik to proxy this container
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy-extern"
+      - "traefik.http.routers.ollama.rule=Host(`${WEBUI_DOMAIN}`) || Host(`${OLLAMA_DOMAIN}`) || Host(`${TRAEFIK_DOMAIN}`)"

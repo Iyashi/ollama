@@ -129,21 +129,21 @@ If you already have an external proxy which blocks port 80 and/or 443, you can u
 
 Here is an example for an external traefik proxy with docker provider enabled:
 
-Just add a `compose.override.yml` with the following content and replace the `traefik-extern` with your own external proxy network:
+Just add a `compose.proxy-extern.yml` to `COMPOSE_FILE` replace the `proxy-extern` with your own external proxy network:
 ```yml
 networks:
-  traefik-extern:
+  proxy-extern:
     external: true
 
 services:
   proxy:
     networks:
-      - traefik-extern
+      - proxy-extern
     ports: !reset []
     # Tell the system-wide traefik to proxy this container
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik-extern"
+      - "traefik.docker.network=proxy-extern"
       - "traefik.http.routers.ollama.rule=Host(`${WEBUI_DOMAIN}`) || Host(`${OLLAMA_DOMAIN}`) || Host(`${TRAEFIK_DOMAIN}`)"
 ```
 
